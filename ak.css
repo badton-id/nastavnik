@@ -177,27 +177,19 @@ b,strong{font-weight:600;color:var(--ink)}
 .hero h1{font-size:clamp(33px,4.3vw,62px);line-height:1.06;color:var(--on)}
 .hero .rubric{color:var(--on2);margin-bottom:26px}
 
-/* Портрет - исходный кадр: без вырезки, без режимов наложения и без правки
-   цвета. Он снят на чёрном, первый экран того же чёрного, и кадр уходит
-   в фон сам. Всё остальное уже пробовали и сняли: на тёмно-сером и на синем
-   снимок клали наложением (screen, lighten) - цвет фона подмешивался
-   в костюм; потом фигуру вырезали - и она выглядела наклеенной. Его слова:
-   "чтобы фотка уходила в цвет" и "такое ощущение, что не оригинал".
-   Файл - сам исходник, andrey-studio-portrait.png: пробовали WebP и JPEG
-   высокого качества - он оба раза видел сжатие, "поставь оригинал, ты
-   сильно ужал". PNG только пережат без потерь (oxipng): пиксели совпадают
-   с исходником один в один, вес 1,7 -> 1,4 МБ. Сжимать с потерями нельзя.
-   Маска трогает только края: стол идёт через весь кадр и на его боковых
-   краях и нижнем срезе был бы виден шов. Плечи и руки в маску не попадают -
-   они занимают середину кадра, от 21% до 78% ширины. */
+/* Портрет - andrey-portrait.png, фигура вырезана на прозрачном фоне
+   (кадр 1448x1086, стола в нём нет). Файл прислан им 9 октября и стоит
+   как есть: без наложения, без масок и без правки цвета. Прозрачный фон
+   ложится на любой цвет, первый экран чёрный.
+   История: прежний кадр был снят на чёрном со столом через весь кадр,
+   его края растворяли маской. Ещё раньше на тёмно-сером и синем снимок
+   клали наложением (screen, lighten) - цвет фона подмешивался в костюм.
+   Сжатие: пробовали WebP и JPEG высокого качества - он оба раза видел
+   сжатие, "поставь оригинал, ты сильно ужал". PNG только пережат без
+   потерь (oxipng): пиксели совпадают с присланным один в один,
+   1,76 -> 1,32 МБ. Сжимать с потерями нельзя. */
 .hero-shot{margin:0;pointer-events:none}
-.hero-shot img{
-    display:block;width:100%;height:auto;
-    -webkit-mask-image:linear-gradient(90deg,transparent 1%,#000 18%,#000 82%,transparent 99%),linear-gradient(#000 93%,transparent 99.5%);
-    -webkit-mask-composite:source-in;
-    mask-image:linear-gradient(90deg,transparent 1%,#000 18%,#000 82%,transparent 99%),linear-gradient(#000 93%,transparent 99.5%);
-    mask-composite:intersect;
-}
+.hero-shot img{display:block;width:100%;height:auto}
 
 /* Направления под заголовком. Точка-разделитель стоит в левом поле пункта,
    а сам пункт сдвинут влево на это поле: у первого в строке точка уходит
@@ -265,7 +257,7 @@ a.fact:hover .fact-l{color:var(--on)}
     .hero-text{max-width:clamp(440px,47vw,690px)}
     .facts{max-width:600px}
 
-    /* Фигура стоит на нижнем крае секции: стол в кадре и есть этот край.
+    /* Фигура стоит на нижнем крае секции: руки на столе срезаны этим краем.
        Пробовали поднять её на середину экрана, вровень с заголовком, -
        без опоры она "плавала в воздухе", возвращена вниз по его слову.
        Занимает около половины высоты окна; уменьшена дважды, тоже по его
@@ -275,16 +267,10 @@ a.fact:hover .fact-l{color:var(--on)}
        мониторе фигура не уезжает к краю. */
     .hero-shot{
         position:absolute;z-index:0;bottom:0;
-        width:min(clamp(430px,46vw,740px),calc(52vh * 1.43));
-        width:min(clamp(430px,46vw,740px),calc(52svh * 1.43));
+        width:min(clamp(430px,46vw,740px),calc(52vh * 1.333));
+        width:min(clamp(430px,46vw,740px),calc(52svh * 1.333));
         left:calc(50% + clamp(210px,24vw,420px));
         transform:translateX(-50%);
-    }
-    /* Здесь растворяются только боковые края стола: нижний срез кадра
-       совпадает с краем секции, и гасить его незачем. */
-    .hero-shot img{
-        -webkit-mask-image:linear-gradient(90deg,transparent 1%,#000 18%,#000 82%,transparent 99%);
-        mask-image:linear-gradient(90deg,transparent 1%,#000 18%,#000 82%,transparent 99%);
     }
 }
 @media(max-width:899px){
@@ -297,10 +283,8 @@ a.fact:hover .fact-l{color:var(--on)}
     .hero-shot img{
         width:min(68%,36vh);width:min(68%,36svh);height:auto;aspect-ratio:1/1;margin-inline:auto;
         object-fit:cover;object-position:50% 50%;
-        /* В квадратном кадре плечи идут от 8% до 91% ширины, поэтому
-           боковое растворение короче, чем на широком экране. */
-        -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%),linear-gradient(#000 93%,transparent 99.5%);
-        mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%),linear-gradient(#000 93%,transparent 99.5%);
+        /* Квадрат берёт из кадра полосу от 12,5% до 87,5% ширины, фигура
+           (от 16% до 86%) входит в неё целиком. */
     }
     .hero > .wrap{padding-top:22px}
 }
