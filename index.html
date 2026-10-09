@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Андрей Кучугурин - Советник | Оцениваю ситуацию и помогаю выбрать стратегию</title>
+<meta name="description" content="Советник: оцениваю ситуацию и помогаю выбрать стратегию, которая приведёт к результату. Управление, бизнес, поведение людей, конфликты. Разбор ситуации за 60–90 минут.">
+<meta name="author" content="Андрей Кучугурин">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Андрей Кучугурин - Советник | Оцениваю ситуацию и помогаю выбрать стратегию">
+<meta property="og:description" content="Оцениваю ситуацию и помогаю выбрать стратегию, которая приведёт к результату. Управление, бизнес, поведение людей, конфликты.">
+<meta property="og:locale" content="ru_RU">
+<meta name="theme-color" content="#000000">
+<!-- Адреса сайта пока нет: canonical, og:url и og:image добавить, когда появится домен. -->
+<!-- Шрифты, стили и скрипт у страницы свои. Файлы шаблона (landing.css, page.js,
+     intro.js, fonts.css) здесь не подключаются. -->
+<link rel="stylesheet" href="assets/fonts/ak-fonts.css">
+<link rel="stylesheet" href="ak.css">
+<script src="ak.js" defer></script>
+</head>
+<body>
+
+<!-- ══════════ ШАПКА ══════════ -->
+<header class="hdr" id="hdr">
+  <div class="hdr-in">
+    <a href="#top" class="mark"><b>Андрей Кучугурин</b><span>Советник</span></a>
+    <nav class="hdr-nav" aria-label="Разделы">
+      <a href="#how">Процесс</a>
+      <a href="#about">О&nbsp;Советнике</a>
+      <a href="#cases">Практика</a>
+      <a href="#price">Условия</a>
+    </nav>
+    <a href="#contact" class="btn btn--sm hdr-cta">Разобрать ситуацию</a>
+    <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="mnav">
+      <svg class="ic-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="ic-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+</header>
+
+<nav class="mnav" id="mnav" aria-label="Меню">
+  <a href="#how">Как проходит разбор</a>
+  <a href="#about">Кто такой Советник</a>
+  <a href="#cases">Кейсы</a>
+  <a href="#price">Стоимость</a>
+  <a href="#faq">Вопросы</a>
+  <div class="mnav-cta">
+    <a href="#contact" class="btn">Разобрать ситуацию <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</nav>
+
+<main id="top">
+<!-- ══════════ ПЕРВЫЙ ЭКРАН ══════════ -->
+<section class="hero on-dark">
+  <figure class="hero-shot">
+    <!-- Исходный файл портрета, как есть: не пересохранён и не уменьшен.
+         На телефоне тот же файл, квадрат вокруг фигуры вырезает CSS. -->
+    <img src="andrey-studio-portrait.png" alt="Андрей Кучугурин" width="1500" height="1049">
+  </figure>
+  <div class="wrap">
+    <div class="hero-text">
+      <p class="rubric">Советник</p>
+      <h1>Оцениваю ситуацию и&nbsp;помогаю выбрать стратегию, которая приведёт к&nbsp;результату</h1>
+
+      <!-- Списком, а не строкой через точки: разделитель рисует CSS, и при переносе
+           на вторую строку точка не повисает в конце первой. -->
+      <ul class="tags">
+        <li>Управление</li><li>бизнес</li><li>поведение людей</li><li>конфликты</li>
+      </ul>
+
+      <p class="hero-cta">
+        <a href="#contact" class="btn">Разобрать ситуацию <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#how" class="more">Как проходит разбор</a>
+      </p>
+
+      <!-- Три факта о формате. Все взяты со страницы: срок опыта из подписи
+           к биографии, длительность и цена - из блока стоимости. -->
+      <div class="facts">
+        <a class="fact" href="#about">
+          <span class="fact-n">10+<i>лет</i></span>
+          <span class="fact-l">в&nbsp;бизнесе и&nbsp;работе с&nbsp;людьми</span>
+        </a>
+        <a class="fact" href="#how">
+          <span class="fact-n">60–90<i>минут</i></span>
+          <span class="fact-l">один разбор под один вопрос</span>
+        </a>
+        <a class="fact" href="#price">
+          <span class="fact-n">2&nbsp;500<i>₽</i></span>
+          <span class="fact-l">разбор ситуации</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Секции свёрстаны одинаково: слева рубрика и заголовок, справа содержание.
+     Рубрики (одно слово над заголовком) добавлены при вёрстке, заголовки -
+     с действующей страницы. -->
+
+<!-- ══════════ СИТУАЦИИ ══════════ -->
+<section class="sec" id="familiar">
+  <div class="wrap grid">
+    <header class="rail rv">
+      <p class="rubric">Ситуации</p>
+      <h2>Возможно, вам знакомо</h2>
+    </header>
+    <div class="body">
+      <ol class="issues">
+        <li class="rv"><span class="idx" aria-hidden="true">01</span><p>Есть цель, которую нельзя менять, но&nbsp;путь к&nbsp;ней обходится слишком дорого или не&nbsp;работает</p></li>
+        <li class="rv"><span class="idx" aria-hidden="true">02</span><p>Пробовали разные подходы&nbsp;— ситуация не&nbsp;сдвигается, а&nbsp;то и&nbsp;усугубляется</p></li>
+        <li class="rv"><span class="idx" aria-hidden="true">03</span><p>Слишком много факторов и&nbsp;интересов, чтобы просчитать наперёд, что сработает</p></li>
+        <li class="rv"><span class="idx" aria-hidden="true">04</span><p>Нужен взгляд со&nbsp;стороны, который оценит ситуацию и&nbsp;предложит рабочий план</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ПРОЦЕСС ══════════ -->
+<section class="sec sec--alt" id="how">
+  <div class="wrap grid">
+    <header class="rail rv">
+      <p class="rubric">Процесс</p>
+      <h2>Как проходит разбор</h2>
+    </header>
+    <div class="body">
+      <ol class="proc">
+        <li class="rv">
+          <span class="idx" aria-hidden="true">01</span>
+          <h3>Рассказываете ситуацию и&nbsp;цель</h3>
+          <p>Чего вы хотите добиться в&nbsp;итоге</p>
+        </li>
+        <li class="rv">
+          <span class="idx" aria-hidden="true">02</span>
+          <h3>Разбираем на&nbsp;составляющие</h3>
+          <p>Что можно менять, а&nbsp;что зафиксировано</p>
+        </li>
+        <li class="rv">
+          <span class="idx" aria-hidden="true">03</span>
+          <h3>Выбираем стратегию</h3>
+          <p>Как действовать, чтобы прийти к&nbsp;цели</p>
+        </li>
+        <li class="rv">
+          <span class="idx" aria-hidden="true">04</span>
+          <h3>Собираем тактику</h3>
+          <p>Конкретные шаги&nbsp;— с&nbsp;учётом времени и&nbsp;доступных средств, что у&nbsp;вас есть</p>
+        </li>
+      </ol>
+      <p class="note rv">Формат живой: решение разрабатываем на&nbsp;основе информации, предоставленной на&nbsp;звонке. По&nbsp;желанию&nbsp;— короткое резюме текстом после, но&nbsp;это не&nbsp;обязательная часть.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ОТЛИЧИЕ ══════════ -->
+<section class="sec" id="diff">
+  <div class="wrap grid">
+    <header class="rail rv">
+      <p class="rubric">Отличие</p>
+      <h2>Чем Советник отличается от&nbsp;коуча и&nbsp;психолога</h2>
+    </header>
+    <div class="body">
+      <!-- data-who дублирует заголовок колонки: на телефоне таблица складывается
+           в столбик, и подпись к значению берётся отсюда. -->
+      <table class="cmp rv">
+        <colgroup><col class="cmp-c0"><col class="cmp-c1"><col><col></colgroup>
+        <thead>
+          <tr><td></td><th scope="col" class="cmp-me">Советник</th><th scope="col">Коуч</th><th scope="col">Психолог</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Фокус</th>
+            <td class="cmp-me" data-who="Советник">ситуация и&nbsp;оппонент(ы)</td>
+            <td data-who="Коуч">ваши цели</td>
+            <td data-who="Психолог">ваше состояние</td>
+          </tr>
+          <tr>
+            <th scope="row">Формат</th>
+            <td class="cmp-me" data-who="Советник">разово, под один вопрос</td>
+            <td data-who="Коуч">регулярные сессии</td>
+            <td data-who="Психолог">регулярная терапия</td>
+          </tr>
+          <tr>
+            <th scope="row">Опора</th>
+            <td class="cmp-me" data-who="Советник">личный опыт и&nbsp;системное мышление</td>
+            <td data-who="Коуч">методология</td>
+            <td data-who="Психолог">клиническая практика</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ КТО ТАКОЙ СОВЕТНИК ══════════ -->
+<section class="sec sec--alt" id="about">
+  <div class="wrap grid">
+    <header class="rail rv">
+      <p class="rubric">О&nbsp;Советнике</p>
+      <h2>Кто такой Советник</h2>
+    </header>
+    <div class="body">
+      <p class="lead-serif rv">В&nbsp;XIX&nbsp;веке у&nbsp;людей, принимающих большие решения, был человек, к&nbsp;которому обращались за&nbsp;взглядом со&nbsp;стороны&nbsp;— тот, кто умел видеть суть происходящего и&nbsp;понимать людей.</p>
+      <div class="who rv">
+        <p class="who-id"><b>Андрей Кучугурин</b><span>Управленец, 10+&nbsp;лет опыта в&nbsp;бизнесе и&nbsp;работе с&nbsp;людьми</span></p>
+        <div class="who-bio">
+          <p>С&nbsp;девятого класса я&nbsp;работал руками&nbsp;— чистил ржавчину с&nbsp;металла и&nbsp;каждый вечер приходил домой таким чёрным, что отмыться до&nbsp;конца было невозможно. Тогда я&nbsp;меньше всего думал о&nbsp;том, что учусь понимать людей. Но&nbsp;среди тех мужиков&nbsp;— со&nbsp;средним достатком и&nbsp;судьбами, крепко потрёпанными жизнью,&nbsp;— эта наука шла сама, без моего ведома.</p>
+          <p>Потом был отдел продаж. Там я&nbsp;узнал, как на&nbsp;самом деле строятся договорённости&nbsp;— не&nbsp;по правилам, а&nbsp;по связям, доверию, иногда по&nbsp;подаркам. И&nbsp;там же&nbsp;— обратную сторону: что такое конкурентный рынок, когда партнёр, которому веришь, за&nbsp;спиной выстраивает свой завод, а&nbsp;потом под твоим именем продаёт продукцию конкурентов.</p>
+          <p>Был директором. Был период, когда рушилось разом&nbsp;— и&nbsp;дело, и&nbsp;личная жизнь. Не&nbsp;скажу, что справился легко. Просто не&nbsp;остановился: договаривался, разгребал, искал выход там, где, казалось, выхода уже не&nbsp;было.</p>
+          <p>Сегодня руковожу проектным департаментом в&nbsp;<span class="nb">IT-компании</span>&nbsp;— командой из&nbsp;двадцати человек, портфелем проектов, за&nbsp;который отвечаю деньгами, а&nbsp;не словами. Возглавляю <span class="nb">IT-комитет</span> «ОПОРЫ РОССИИ», преподаю управление проектами, выступаю на&nbsp;конференциях. Но&nbsp;весь этот путь начался не&nbsp;с диплома&nbsp;— а&nbsp;с той самой ржавчины на&nbsp;руках, которую было не&nbsp;отмыть.</p>
+          <p>Мне интересно не&nbsp;готовое решение. Мне интересно то&nbsp;место, где на&nbsp;самом деле находится проблема.</p>
+        </div>
+      </div>
+      <blockquote class="quote on-dark rv">
+        <p>«Слова показывают человека таким, каким он хочет казаться. Поступки&nbsp;— таким, какой он есть.»</p>
+        <cite>Андрей Кучугурин</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ПРАКТИКА ══════════ -->
+<section class="sec" id="cases">
+  <div class="wrap grid">
+    <header class="rail rv">
+      <p class="rubric">Практика</p>
+      <h2>Кейсы</h2>
+    </header>
+    <div class="body">
+      <!-- Заголовки кейсов добавлены при переносе: на действующей странице
+           они шли только под номерами. Формулировки взяты из их же текста. -->
+      <article class="case rv">
+        <header class="case-top">
+          <span class="idx">Кейс&nbsp;01</span>
+          <h3>Результат менять нельзя, маршрут&nbsp;— можно</h3>
+        </header>
+        <dl class="case-dl">
+          <div>
+            <dt>Ситуация</dt>
+            <dd>Зашёл на&nbsp;проект к&nbsp;клиенту. Требования к&nbsp;результату&nbsp;— фиксированы и&nbsp;не обсуждались.</dd>
+          </div>
+          <div>
+            <dt>Оценка</dt>
+            <dd>Сам результат менять было нельзя и&nbsp;не нужно. А&nbsp;вот то, каким маршрутом его достигать внутри компании,&nbsp;— можно и&nbsp;стоило.</dd>
+          </div>
+          <div>
+            <dt>Стратегия</dt>
+            <dd>Сохранил требуемый клиентом результат, но&nbsp;пересобрал стратегию работы: коммуникацию перевёл в&nbsp;чаты, сократил число артефактов, поэтапно снизил частоту звонков&nbsp;— с&nbsp;трёх в&nbsp;неделю по&nbsp;два часа до&nbsp;одного, затем&nbsp;— только по&nbsp;необходимости.</dd>
+          </div>
+          <div class="case-out">
+            <dt>Результат</dt>
+            <dd>Более выгодный для компании маршрут доставки того&nbsp;же результата. Два месяца на&nbsp;трансформацию.</dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="case rv">
+        <header class="case-top">
+          <span class="idx">Кейс&nbsp;02</span>
+          <h3>Стоимость проекта выросла вдвое</h3>
+        </header>
+        <dl class="case-dl">
+          <div>
+            <dt>Ситуация</dt>
+            <dd>Стоимость проекта выросла вдвое по&nbsp;данным аналитики. Клиент узнал об&nbsp;этом на&nbsp;звонке&nbsp;— и&nbsp;вышел на&nbsp;связь на&nbsp;повышенных тонах, с&nbsp;прямыми упрёками в&nbsp;некомпетентности.</dd>
+          </div>
+          <div>
+            <dt>Оценка</dt>
+            <dd>За&nbsp;эмоциями стояло не&nbsp;недоверие к&nbsp;команде, а&nbsp;неожиданность: бюджет был зафиксирован под исходную цифру, и&nbsp;новая цена в&nbsp;него не&nbsp;укладывалась.</dd>
+          </div>
+          <div>
+            <dt>Стратегия</dt>
+            <dd>Снял напряжение шуткой&nbsp;— вместо оправданий, ирония над самой ситуацией. Затем перевёл разговор в&nbsp;конструктив: показал, что у&nbsp;задачи есть разные варианты реализации. Предложил уложиться в&nbsp;текущий бюджет за&nbsp;счёт более простых решений сейчас, а&nbsp;то, что требует более глубокой проработки,&nbsp;— вынести на&nbsp;следующие этапы.</dd>
+          </div>
+          <div class="case-out">
+            <dt>Результат</dt>
+            <dd>Конфликт снят на&nbsp;том&nbsp;же звонке. Проект развивается взаимовыгодно уже больше года, с&nbsp;заделом на&nbsp;дальнейшие этапы.</dd>
+          </div>
+        </dl>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ УСЛОВИЯ ══════════ -->
+<section class="sec sec--alt" id="price">
+  <div class="wrap grid">
+    <header class="rail rv">
+      <p class="rubric">Условия</p>
+      <h2>Стоимость</h2>
+    </header>
+    <div class="body">
+      <div class="prices">
+        <article class="price price--main on-dark rv">
+          <h3>Разбор ситуации</h3>
+          <p class="price-meta">60–90&nbsp;минут</p>
+          <p class="price-t">Рассказываете, что происходит. Помогаю увидеть структуру и&nbsp;вместе формируем варианты решения.</p>
+          <div class="price-foot">
+            <b class="price-n">2&nbsp;500<i>₽</i></b>
+            <a href="#contact" class="btn">Разобрать ситуацию <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </article>
+        <article class="price rv">
+          <h3>Нужен разбор срочно?</h3>
+          <p class="price-meta">В&nbsp;течение ближайших двух часов</p>
+          <div class="price-foot">
+            <b class="price-n">4&nbsp;000<i>₽</i></b>
+            <a href="#contact" class="btn btn--line">Разобрать срочно <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ВОПРОСЫ ══════════ -->
+<section class="sec" id="faq">
+  <div class="wrap grid">
+    <header class="rail rv">
+      <p class="rubric">FAQ</p>
+      <h2>Вопросы</h2>
+    </header>
+    <div class="body">
+      <!-- ЧЕРНОВИКИ. На скриншотах действующей страницы ответы свёрнуты, их текста
+           здесь нет. Вопросы перенесены дословно. Ответ на пятый вопрос взят
+           из сноски к блоку "Как проходит разбор", остальные четыре написаны
+           заново и помечены на странице плашкой .draft - заменить текстом Андрея
+           и снять плашки. -->
+      <div class="faq rv">
+        <details class="qa">
+          <summary>Почему вам можно доверять, если вы не&nbsp;психолог и&nbsp;не сертифицированный коуч?</summary>
+          <div class="qa-a">
+            <span class="draft">черновик</span>
+            <p>Я&nbsp;не заменяю ни&nbsp;того, ни&nbsp;другого: психолог работает с&nbsp;вашим состоянием, коуч&nbsp;— с&nbsp;вашими целями. Я&nbsp;работаю с&nbsp;ситуацией и&nbsp;людьми в&nbsp;ней. Опора здесь&nbsp;— не&nbsp;сертификат, а&nbsp;личный опыт и&nbsp;системное мышление: больше десяти лет в&nbsp;бизнесе и&nbsp;управлении людьми.</p>
+          </div>
+        </details>
+        <details class="qa">
+          <summary>А&nbsp;если совет не&nbsp;сработает?</summary>
+          <div class="qa-a">
+            <span class="draft">черновик</span>
+            <p>На&nbsp;разборе мы собираем не&nbsp;один совет, а&nbsp;стратегию и&nbsp;конкретные шаги&nbsp;— с&nbsp;учётом времени и&nbsp;средств, что у&nbsp;вас есть. Решение строится на&nbsp;информации, которую вы дали на&nbsp;звонке: чем она полнее, тем точнее план.</p>
+          </div>
+        </details>
+        <details class="qa">
+          <summary>Это конфиденциально?</summary>
+          <div class="qa-a">
+            <span class="draft">черновик</span>
+            <p>Да. То, что вы рассказываете на&nbsp;разборе, остаётся между нами.</p>
+          </div>
+        </details>
+        <details class="qa">
+          <summary>А&nbsp;если ситуация не&nbsp;рабочая, а&nbsp;личная?</summary>
+          <div class="qa-a">
+            <span class="draft">черновик</span>
+            <p>Разберём и&nbsp;её. В&nbsp;фокусе по-прежнему ситуация и&nbsp;люди в&nbsp;ней: их интересы и&nbsp;поведение.</p>
+          </div>
+        </details>
+        <details class="qa">
+          <summary>Дадите что-то в&nbsp;письменном виде по&nbsp;итогам?</summary>
+          <div class="qa-a">
+            <p>По&nbsp;желанию&nbsp;— короткое резюме текстом после разбора. Это не&nbsp;обязательная часть.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════ КОНТАКТ И ПОДВАЛ ══════════ -->
+<section class="cta on-dark" id="contact">
+  <div class="wrap">
+    <div class="grid">
+      <header class="rail rv">
+        <p class="rubric">Контакт</p>
+        <h2>Не&nbsp;обязательно решать всё самостоятельно</h2>
+      </header>
+      <div class="body">
+        <p class="cta-lead rv">Если есть ситуация, в&nbsp;которой вы застряли&nbsp;— давайте разберём её вместе.</p>
+        <!-- Контакты стоят только здесь: остальные кнопки страницы ведут к этому
+             блоку, менять адреса нужно в одном месте. Кнопка открывает личный
+             Telegram Андрея, ниже тот же Telegram именем и телефон.
+             Ссылки "Канал" с действующей страницы нет: адрес канала не дан. -->
+        <p class="rv"><a href="https://t.me/annikkin" target="_blank" rel="noopener" class="btn">Обсудить ситуацию <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+        <ul class="contacts rv">
+          <li><a href="https://t.me/annikkin" target="_blank" rel="noopener"><span class="contacts-k">Telegram</span><span class="contacts-v">@annikkin</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+          <li><a href="tel:+79608899966"><span class="contacts-k">Телефон</span><span class="contacts-v">+7&nbsp;960&nbsp;889-99-66</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        </ul>
+      </div>
+    </div>
+    <footer class="ftr">© <span id="yr">2026</span> Андрей Кучугурин · Советник</footer>
+  </div>
+</section>
+
+</body>
+</html>
