@@ -1,153 +1,181 @@
 /* ═══════════════════════════════════════════════════════════
    Андрей Кучугурин — Советник
-   Самостоятельные стили страницы. Регистр - консалтинговый:
-   чёрный с белым, антиква в заголовках, строгая сетка, прямые углы,
-   всё разложено как в отчёте - рубрика и заголовок слева,
-   содержание справа.
-   От сайта Константина взят только смысл вёрстки. landing.css,
-   page.js и intro.js шаблона на этой странице не подключаются.
+   Самостоятельные стили страницы.
+
+   Концепция: intellectual minimalism / editorial. Бумажный фон
+   слоновой кости, графит, один приглушённый оливковый акцент
+   и песочный как второй тон. Антиква Spectral в заголовках
+   и числах, гротеск Golos Text в тексте. Всё держится на типографике,
+   тонких линиях и модульной сетке в двенадцать колонок.
+   Геометрия одна: линия с узлами в процессе и песочная плита
+   под портретом. Картинок-метафор нет.
+
+   Палитра целиком в переменных ниже: поменять тон можно в одном месте.
    ═══════════════════════════════════════════════════════════ */
 
 /* ─── Токены ─────────────────────────────────────────────── */
 :root{
-    /* Шрифты свои: Spectral в заголовках, числах и цитате, Golos Text
-       во всём остальном. Файлы лежат в assets/fonts, подключает их
-       ak-fonts.css. */
     --sans:'Golos Text',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
     --serif:'Spectral',Georgia,'Times New Roman',serif;
 
-    /* Палитра без цвета: чёрный, белый и серые. Тёмный тон - чистый чёрный,
-       и это не вкус, а условие: портрет снят на чёрном, и первый экран должен
-       быть того же цвета, чтобы кадр уходил в фон без швов. Тёмно-синий
-       здесь стоял и снят по его слову - на нём снимок приходилось либо
-       накладывать с искажением цвета, либо вырезать. Остальные тёмные блоки
-       взяты тем же чёрным, чтобы на странице не было двух тёмных тонов.
-       Отдельного акцента нет: бирюза с действующей страницы тоже снята. */
-    --dark:#000000;
-    --bg:#ffffff;
-    --bg2:#f3f4f5;
-    --ink:#0e1012;
-    --ink2:#3d4248;
-    --ink3:#70767d;
-    --rule:rgba(14,16,18,.14);
-    --rule2:rgba(14,16,18,.36);
+    /* Поверхности */
+    --paper:#F6F2E9;          /* основной фон, слоновая кость */
+    --sand:#EAE3D3;           /* второй фон: чередующиеся секции, плиты */
+    --dark:#1C1F1A;           /* графит для тёмных блоков */
 
-    /* То же на чёрном. */
-    --on:#ffffff;
-    --on2:#c3c7cc;
-    --on3:#8b9198;
-    --on-rule:rgba(255,255,255,.16);
-    --on-rule2:rgba(255,255,255,.44);
+    /* Текст на светлом. Контраст на --paper: 14.7 / 8.7 / 5.3 */
+    --ink:#1E201C;
+    --ink2:#42453D;
+    --ink3:#62655A;
+
+    /* Акцент: приглушённый оливковый. На --paper 5.2, на --sand 4.6 */
+    --olive:#5C6A47;
+    --olive-d:#48543A;        /* заливка и наведение; текст --paper на нём 7.2 */
+    --sage:#B4BD9B;           /* акцент на графите, контраст 8.5 */
+
+    --rule:rgba(30,32,28,.16);
+    --rule2:rgba(30,32,28,.38);
+
+    /* Текст на графите */
+    --on:#F6F2E9;
+    --on2:#C9CCC0;
+    --on3:#9A9E92;
+    --on-rule:rgba(246,242,233,.16);
+    --on-rule2:rgba(246,242,233,.42);
+
+    /* Совместимость со старыми именами */
+    --bg:var(--paper);
+    --bg2:var(--sand);
 
     --max:1240px;
     --pad:clamp(20px,4vw,48px);
     --gap:24px;
-    --sec:clamp(60px,7.2vw,112px);
+    --sec:clamp(64px,7.6vw,120px);
     --hdr:68px;
     --ease:cubic-bezier(.22,.85,.32,1);
 }
 
 /* ─── Основа ─────────────────────────────────────────────── */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--hdr) + 8px)}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--hdr) + 8px);background:var(--paper)}
 body{
     font-family:var(--sans);font-size:16px;line-height:1.65;
-    color:var(--ink2);background:var(--bg);
+    color:var(--ink2);background:var(--paper);
     -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+    text-rendering:optimizeLegibility;
     overflow-x:hidden;
 }
+@media(min-width:1100px){body{font-size:17px}}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 ul,ol{list-style:none}
-::selection{background:var(--dark);color:#fff}
-:focus-visible{outline:2px solid var(--dark);outline-offset:3px}
-/* На чёрном выделение и обводка фокуса светлые. */
-.on-dark ::selection{background:#fff;color:var(--dark)}
-.on-dark :focus-visible{outline-color:#fff}
-.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--pad)}
+p{text-wrap:pretty}
+::selection{background:var(--olive);color:var(--paper)}
+:focus-visible{outline:2px solid var(--olive);outline-offset:3px}
+.on-dark ::selection{background:var(--sage);color:var(--dark)}
+.on-dark :focus-visible{outline-color:var(--sage)}
+/* Поля не меньше --pad и не меньше выреза экрана телефона. */
+.wrap{
+    max-width:var(--max);margin:0 auto;
+    padding-left:max(var(--pad),env(safe-area-inset-left,0px));
+    padding-right:max(var(--pad),env(safe-area-inset-right,0px));
+}
 
-h1,h2{font-family:var(--serif);font-weight:500;color:var(--ink);letter-spacing:-.012em}
+h1,h2{font-family:var(--serif);font-weight:500;color:var(--ink);letter-spacing:-.014em}
 h3{font-family:var(--sans);font-weight:600;font-size:clamp(17px,1.35vw,19px);line-height:1.35;color:var(--ink)}
 b,strong{font-weight:600;color:var(--ink)}
 /* Слово с дефисом не рвётся по дефису: IT-компания, IT-комитет. */
 .nb{white-space:nowrap}
 
-/* Рубрика: мелкая капитель с короткой чертой. Стоит над заголовком секции
-   и подписывает строки таблиц и кейсов. */
+/* Ссылка для клавиатуры: появляется только при фокусе. */
+.skip{
+    position:fixed;left:max(var(--pad),env(safe-area-inset-left,0px));top:calc(10px + env(safe-area-inset-top,0px));z-index:100;padding:10px 16px;
+    background:var(--dark);color:var(--paper);font-size:14px;font-weight:600;
+    transform:translateY(-200%);transition:transform .2s var(--ease);
+}
+.skip:focus{transform:none}
+
+/* Рубрика: мелкая капитель с короткой оливковой чертой. Стоит над заголовком
+   секции и подписывает строки таблиц и кейсов. */
 .rubric,.cmp thead th,.cmp tbody th,.case-dl dt,.price-meta,.contacts-k,.draft{
     font-family:var(--sans);font-size:11.5px;font-weight:600;line-height:1.4;
     letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);
 }
-.rubric{display:flex;align-items:center;gap:12px}
-.rubric::before{content:'';flex:0 0 24px;height:1px;background:currentColor}
-/* Порядковый номер строки: моноширинные цифры, чтобы столбец стоял ровно. */
-.idx{font-size:13px;font-weight:600;letter-spacing:.06em;color:var(--ink3);font-variant-numeric:tabular-nums}
+.rubric{display:flex;align-items:center;gap:12px;color:var(--olive)}
+.rubric::before{content:'';flex:0 0 28px;height:1px;background:currentColor}
+.on-dark .rubric{color:var(--sage)}
+/* Порядковый номер: антиква, цифры одной высоты, столбец стоит ровно. */
+.idx{
+    font-family:var(--serif);font-size:15px;font-weight:600;letter-spacing:.04em;
+    color:var(--olive);font-variant-numeric:lining-nums tabular-nums;
+}
 
 /* ─── Кнопки ─────────────────────────────────────────────── */
-/* Прямоугольные. Цвета берутся из переменных: на белом кнопка чёрная,
-   на чёрном - белая; блоку достаточно класса .on-dark. */
+/* Прямоугольные. Цвета берутся из переменных: на светлом кнопка графитовая,
+   на графите светлая; блоку достаточно класса .on-dark. */
 .btn{
     display:inline-flex;align-items:center;justify-content:center;gap:12px;
     padding:16px 26px;border-radius:2px;
-    background:var(--btn-bg,var(--dark));color:var(--btn-fg,#fff);
+    background:var(--btn-bg,var(--dark));color:var(--btn-fg,var(--paper));
     font-size:15px;font-weight:600;line-height:1.2;white-space:nowrap;
-    transition:background .3s var(--ease),color .3s var(--ease),transform .25s var(--ease),opacity .25s;
+    transition:background .3s var(--ease),color .3s var(--ease),box-shadow .3s var(--ease);
 }
-.btn:hover{opacity:.88;transform:translateY(-1px)}
-.btn svg{width:15px;height:15px;flex:0 0 auto;transition:transform .25s var(--ease)}
+.btn:hover{background:var(--btn-hover,var(--olive-d))}
+.btn svg{width:15px;height:15px;flex:0 0 auto;transition:transform .3s var(--ease)}
 .btn:hover svg{transform:translateX(4px)}
 .btn--sm{padding:11px 18px;font-size:13.5px}
-.btn--line{background:none;color:var(--ink);box-shadow:inset 0 0 0 1px var(--rule2)}
-.btn--line:hover{opacity:1;background:var(--dark);color:#fff;box-shadow:inset 0 0 0 1px var(--dark)}
-.on-dark{--btn-bg:#fff;--btn-fg:var(--dark)}
+.btn--line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--rule2)}
+.btn--line:hover{background:var(--dark);color:var(--paper);box-shadow:inset 0 0 0 1px var(--dark)}
+.on-dark{--btn-bg:var(--paper);--btn-fg:var(--dark);--btn-hover:var(--sage)}
 
 /* ─── Шапка ──────────────────────────────────────────────── */
-/* Над первым экраном прозрачная и светлая по тексту, ниже - белая полоса
-   с чёрным текстом. Третье состояние - открытое меню на телефоне: под шапкой
-   белый фон, и она сразу становится "на белом", где бы ни стояла страница. */
+/* Над первым экраном прозрачная, ниже по странице - сплошная полоса
+   цвета бумаги с тонкой линией. Открытое меню на телефоне - тоже сплошная. */
 .hdr{
-    --btn-bg:#fff;--btn-fg:var(--dark);
-    position:fixed;inset:0 0 auto 0;z-index:50;height:var(--hdr);
-    display:flex;align-items:center;color:var(--on);
+    position:fixed;inset:0 0 auto 0;z-index:50;
+    height:calc(var(--hdr) + env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px);
+    display:flex;align-items:center;color:var(--ink);
     border-bottom:1px solid transparent;
-    transition:background .35s var(--ease),color .35s var(--ease),border-color .35s;
+    transition:background .3s var(--ease),border-color .3s;
 }
-.hdr.stuck,.menu-open .hdr{
-    --btn-bg:var(--dark);--btn-fg:#fff;
-    background:rgba(255,255,255,.96);color:var(--ink);border-bottom-color:var(--rule);
-    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-}
+.hdr.stuck,.menu-open .hdr{background:var(--paper);border-bottom-color:var(--rule)}
 .hdr-in{
     display:flex;align-items:center;gap:30px;
-    width:100%;max-width:var(--max);margin:0 auto;padding-inline:var(--pad);
+    width:100%;max-width:var(--max);margin:0 auto;
+    padding-left:max(var(--pad),env(safe-area-inset-left,0px));
+    padding-right:max(var(--pad),env(safe-area-inset-right,0px));
 }
 /* Имя и роль одной строкой через черту - как подпись на визитке. */
 .mark{display:flex;align-items:center;gap:14px;white-space:nowrap}
 .mark b{font-family:var(--serif);font-weight:600;font-size:20px;letter-spacing:-.01em;color:inherit}
 .mark span{
-    padding-left:14px;border-left:1px solid currentColor;
-    font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;opacity:.7;
+    padding-left:14px;border-left:1px solid var(--rule2);
+    font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--olive);
 }
 /* Над первым экраном роль в шапке скрыта: там она уже стоит рубрикой над
-   заголовком, и слово читалось бы дважды подряд. Ниже по странице
-   возвращается. */
+   заголовком, и слово читалось бы дважды подряд. Ниже по странице возвращается. */
 .hdr:not(.stuck) .mark span{display:none}
 .menu-open .hdr .mark span{display:block}
 .hdr-nav{display:flex;gap:28px;margin-left:auto}
-.hdr-nav a{font-size:14px;opacity:.76;transition:opacity .25s}
-.hdr-nav a:hover{opacity:1}
-.burger{display:none;place-items:center;flex:0 0 auto;width:40px;height:40px;margin-left:auto;box-shadow:inset 0 0 0 1px currentColor;border-radius:2px;opacity:.9}
+.hdr-nav a{
+    position:relative;padding-block:6px;font-size:14px;color:var(--ink2);
+    background:linear-gradient(var(--olive),var(--olive)) 0 100%/0 1px no-repeat;
+    transition:color .25s,background-size .35s var(--ease);
+}
+.hdr-nav a:hover,.hdr-nav a[aria-current="true"]{color:var(--ink);background-size:100% 1px}
+.burger{display:none;place-items:center;flex:0 0 auto;width:40px;height:40px;margin-left:auto;box-shadow:inset 0 0 0 1px var(--rule2);border-radius:2px}
 .burger svg{width:18px;height:18px}
 /* В кнопке два знака: три линии и крестик. Виден тот, что отвечает состоянию меню. */
 .burger .ic-close,.burger[aria-expanded="true"] .ic-menu{display:none}
 .burger[aria-expanded="true"] .ic-close{display:block}
 
-/* Меню на телефоне: белый лист во весь экран, лежит под шапкой. */
+/* Меню на телефоне: лист цвета бумаги во весь экран, лежит под шапкой. */
 .mnav{
-    position:fixed;inset:0;z-index:40;background:var(--bg);color:var(--ink);
+    position:fixed;inset:0;z-index:40;background:var(--paper);color:var(--ink);
     display:flex;flex-direction:column;
-    padding:calc(var(--hdr) + 14px) var(--pad) 28px;overflow-y:auto;
+    padding:calc(var(--hdr) + 14px + env(safe-area-inset-top,0px)) max(var(--pad),env(safe-area-inset-right,0px)) calc(28px + env(safe-area-inset-bottom,0px)) max(var(--pad),env(safe-area-inset-left,0px));
+    overflow-y:auto;
     opacity:0;visibility:hidden;transition:opacity .3s var(--ease),visibility .3s;
 }
 .mnav.open{opacity:1;visibility:visible}
@@ -162,73 +190,72 @@ b,strong{font-weight:600;color:var(--ink)}
     .hdr-nav,.hdr-cta{display:none}
     .burger{display:grid}
 }
-/* На узком телефоне роль не помещается рядом с кнопкой меню - скрыта
-   и при открытом меню, иначе она сжимает кнопку. */
+/* На узком телефоне роль не помещается рядом с кнопкой меню. */
 @media(max-width:420px){
     .mark span,.menu-open .hdr .mark span{display:none}
 }
 
 /* ─── Первый экран ───────────────────────────────────────── */
 .hero{
-    position:relative;overflow:hidden;background:var(--dark);color:var(--on2);
-    min-height:100vh;min-height:100svh;
+    position:relative;overflow:hidden;background:var(--paper);color:var(--ink2);
+    /* Высота экрана, но не выше 880px: на очень высоком окне первый экран
+       не растягивается пустотой. */
+    min-height:min(100vh,880px);min-height:min(100svh,880px);
 }
 .hero > .wrap{position:relative;z-index:1}
-.hero h1{font-size:clamp(33px,4.3vw,62px);line-height:1.06;color:var(--on)}
-.hero .rubric{color:var(--on2);margin-bottom:26px}
+.hero h1{font-size:clamp(34px,4.5vw,66px);line-height:1.05;color:var(--ink)}
+.hero .rubric{margin-bottom:26px}
 
-/* Портрет - andrey-portrait.png, фигура вырезана на прозрачном фоне
-   (кадр 1448x1086, стола в нём нет). Файл прислан им 15 октября и стоит
-   как есть: без наложения, без масок и без правки цвета. Прозрачный фон
-   ложится на любой цвет, первый экран чёрный.
-   История: прежний кадр был снят на чёрном со столом через весь кадр,
-   его края растворяли маской. Ещё раньше на тёмно-сером и синем снимок
-   клали наложением (screen, lighten) - цвет фона подмешивался в костюм.
-   Сжатие: пробовали WebP и JPEG высокого качества - он оба раза видел
-   сжатие, "поставь оригинал, ты сильно ужал". PNG только пережат без
-   потерь (oxipng): пиксели совпадают с присланным один в один,
-   1,76 -> 1,32 МБ. Сжимать с потерями нельзя. Файл от 15 октября: 1,46 -> 1,40 МБ,
-   тоже без потерь (пережат средствами PIL, пиксели совпадают с присланным). */
-.hero-shot{margin:0;pointer-events:none}
-.hero-shot img{display:block;width:100%;height:auto}
+/* Портрет - andrey-portrait.png, фигура на прозрачном фоне (кадр 1448x1086).
+   Файл стоит как есть: без масок, без правки цвета, без сжатия с потерями.
+   Под фигурой песочная плита: она ограничивает фон и даёт опору, голова
+   выходит над её верхним краем. Плита рисуется на самой .hero-shot,
+   поэтому едет вместе с портретом и не зависит от ширины окна. */
+.hero-shot{margin:0;pointer-events:none;position:relative}
+.hero-shot img{display:block;width:100%;height:auto;position:relative;z-index:1}
+.hero-shot::before{
+    content:'';position:absolute;z-index:0;bottom:0;left:50%;
+    width:72%;height:74%;transform:translateX(-50%);
+    background:var(--sand);
+}
 
 /* Направления под заголовком. Точка-разделитель стоит в левом поле пункта,
    а сам пункт сдвинут влево на это поле: у первого в строке точка уходит
    за край списка и срезается, у остальных встаёт между словами. При переносе
    точка не повисает в конце строки. */
-.tags{display:flex;flex-wrap:wrap;overflow:hidden;margin-top:28px;font-size:15px;line-height:1.9}
+.tags{display:flex;flex-wrap:wrap;overflow:hidden;margin-top:28px;font-size:15px;line-height:1.9;color:var(--ink2)}
 .tags li{position:relative;margin-left:-21px;padding:0 21px;white-space:nowrap}
 .tags li::before{
-    content:'';position:absolute;left:9px;top:50%;width:3px;height:3px;margin-top:-1px;
-    background:var(--on3);
+    content:'';position:absolute;left:9px;top:50%;width:4px;height:4px;margin-top:-2px;
+    background:var(--olive);
 }
 
 .hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px 30px;margin-top:34px}
 .more{
-    font-size:14.5px;
-    text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px;
-    text-decoration-color:var(--on-rule2);transition:color .25s,text-decoration-color .25s;
+    font-size:14.5px;color:var(--ink);padding-block:4px;
+    background:linear-gradient(var(--rule2),var(--rule2)) 0 100%/100% 1px no-repeat;
+    transition:color .25s,background-size .35s var(--ease);
 }
-.more:hover{color:var(--on);text-decoration-color:var(--on)}
+.more:hover{color:var(--olive);background:linear-gradient(var(--olive),var(--olive)) 0 100%/100% 1px no-repeat}
 
 /* Три факта о формате: сколько опыта, сколько длится, сколько стоит.
    Все взяты со страницы и ведут в свой блок. */
 .facts{
     display:grid;grid-template-columns:repeat(3,auto);justify-content:start;
-    margin-top:clamp(36px,5.2vw,64px);padding-top:26px;border-top:1px solid var(--on-rule);
+    margin-top:clamp(36px,5.2vw,64px);padding-top:26px;border-top:1px solid var(--rule2);
 }
 .fact{padding-right:clamp(18px,2.6vw,38px)}
-.fact + .fact{padding-left:clamp(18px,2.6vw,38px);border-left:1px solid var(--on-rule)}
+.fact + .fact{padding-left:clamp(18px,2.6vw,38px);border-left:1px solid var(--rule)}
 .fact-n{
     display:block;font-family:var(--serif);font-weight:500;font-variant-numeric:lining-nums;
-    font-size:clamp(28px,2.9vw,42px);line-height:1;color:var(--on);white-space:nowrap;
+    font-size:clamp(28px,2.9vw,42px);line-height:1;color:var(--ink);white-space:nowrap;
 }
 .fact-n i{
     font-family:var(--sans);font-style:normal;font-weight:500;font-size:13px;
-    letter-spacing:.02em;color:var(--on3);margin-left:8px;
+    letter-spacing:.02em;color:var(--olive);margin-left:8px;
 }
-.fact-l{display:block;margin-top:11px;font-size:13px;line-height:1.45;color:var(--on3);max-width:170px;transition:color .25s}
-a.fact:hover .fact-l{color:var(--on)}
+.fact-l{display:block;margin-top:11px;font-size:13px;line-height:1.45;color:var(--ink3);max-width:170px;transition:color .25s}
+a.fact:hover .fact-l{color:var(--ink)}
 
 /* Текст первого экрана поднимается на место при загрузке, строка за строкой.
    Только CSS: без скрипта и при выключенной анимации он просто стоит. */
@@ -251,66 +278,71 @@ a.fact:hover .fact-l{color:var(--on)}
     /* У .wrap поля auto: во flex-колонке они отменяют растяжение,
        и колонка сжалась бы по тексту. */
     .hero > .wrap{width:100%}
-    /* Колонка текста. Правее неё - фигура. Ширина привязана к кеглю заголовка:
-       самая длинная его строка занимает около 10,5 кегля, колонка на любой
-       ширине окна даёт около 11. Цифры уже колонки: на их высоте справа
-       уже рукав, а заголовок стоит выше плеча. */
+    /* Колонка текста привязана к кеглю заголовка: самая длинная его строка
+       занимает около 10,5 кегля, колонка даёт около 11. */
     .hero-text{max-width:clamp(440px,47vw,690px)}
     .facts{max-width:600px}
 
     /* Фигура стоит на нижнем крае секции: руки на столе срезаны этим краем.
-       Пробовали поднять её на середину экрана, вровень с заголовком, -
-       без опоры она "плавала в воздухе", возвращена вниз по его слову.
-       Занимает около половины высоты окна; уменьшена дважды, тоже по его
-       слову. Ширина ограничена и окном, и его высотой, высота идёт
-       за шириной сама, пропорции кадра не меняются. Центр по горизонтали
-       считается от середины окна, как и колонка сайта, поэтому на широком
-       мониторе фигура не уезжает к краю. */
+       Занимает около половины высоты окна; ширина ограничена и окном,
+       и его высотой, высота идёт за шириной, пропорции кадра не меняются.
+       Центр по горизонтали считается от середины окна, как и колонка сайта,
+       поэтому на широком мониторе фигура не уезжает к краю. */
     .hero-shot{
-        position:absolute;z-index:0;bottom:0;
-        width:min(clamp(430px,46vw,740px),calc(52vh * 1.333));
-        width:min(clamp(430px,46vw,740px),calc(52svh * 1.333));
-        left:calc(50% + clamp(210px,24vw,420px));
+        --w:min(clamp(430px,46vw,740px),calc(52vh * 1.333));
+        --w:min(clamp(430px,46vw,740px),calc(52svh * 1.333));
+        position:absolute;z-index:0;bottom:0;width:var(--w);
+        /* Правый край плиты (она занимает 72% кадра, фигура стоит по его центру)
+           ложится на правый край колонки сайта; на узком окне - на поле. */
+        left:calc(min(100vw - var(--pad), 50vw + var(--max) / 2 - var(--pad)) - var(--w) * .36);
         transform:translateX(-50%);
+        animation:none;
     }
+    .hero-shot img{animation:show 1.1s var(--ease) .15s both}
 }
 @media(max-width:899px){
     /* На телефоне портрет стоит первым, текст под ним. Снимок квадратный
-       и стоит по центру: не шире 68% экрана и не выше 36% окна. Файл тот же,
-       что на широком экране; квадрат из него вырезает object-fit - по высоте
-       кадр входит целиком, по бокам срезается поровну чёрный фон. */
+       и стоит по центру: не шире 68% экрана и не выше 36% окна. Квадрат
+       вырезает object-fit: по высоте кадр входит целиком, по бокам
+       срезается пустое поле. Плита уходит на всю ширину экрана. */
     .hero{min-height:0;padding-bottom:44px}
-    .hero-shot{position:relative;z-index:0;padding-top:calc(var(--hdr) - 6px)}
+    .hero-shot{z-index:0;padding-top:calc(var(--hdr) - 6px)}
     .hero-shot img{
         width:min(68%,36vh);width:min(68%,36svh);height:auto;aspect-ratio:1/1;margin-inline:auto;
         object-fit:cover;object-position:50% 50%;
-        /* Квадрат берёт из кадра полосу от 12,5% до 87,5% ширины, фигура
-           (от 14% до 85%) входит в неё целиком. */
     }
+    .hero-shot::before{width:100vw;height:68%}
     .hero > .wrap{padding-top:22px}
 }
 @media(max-width:560px){
     .hero-cta .btn{width:100%}
     /* В три колонки подписи ломаются по слову в строку. Строками:
        число слева, подпись справа. */
-    .facts{grid-template-columns:1fr;padding-top:0}
+    .facts{grid-template-columns:1fr;padding-top:0;border-top:0}
     .fact,.fact + .fact{
         display:grid;grid-template-columns:150px 1fr;align-items:baseline;
-        padding:14px 0;border-left:0;border-bottom:1px solid var(--on-rule);
+        padding:14px 0;border-left:0;border-bottom:1px solid var(--rule);
     }
+    .fact:first-child{border-top:1px solid var(--rule2)}
     .fact-l{margin-top:0;max-width:none}
 }
 
-/* ─── Секции: рубрика слева, содержание справа ───────────── */
-/* Сетка в двенадцать колонок. Четыре левые - поле с рубрикой и заголовком,
-   восемь правых - содержание. На длинных секциях поле липкое: заголовок
-   остаётся на виду, пока читается правая колонка. */
+/* ─── Секции ─────────────────────────────────────────────── */
+/* Сетка в двенадцать колонок. Узкие секции: четыре левые колонки - поле
+   с рубрикой и заголовком, восемь правых - содержание; на длинных секциях
+   поле липкое. Широкие секции (.sec--wide): заголовок сверху, содержание
+   во всю ширину. Секции чередуют обе схемы и два фона. */
 .sec{padding-block:var(--sec)}
-.sec--alt{background:var(--bg2)}
+.sec--alt{background:var(--sand)}
 .grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap)}
 .rail{grid-column:1 / span 4;align-self:start;position:sticky;top:calc(var(--hdr) + 36px);padding-right:clamp(8px,2vw,36px)}
 .body{grid-column:5 / -1;min-width:0}
-.rail h2{margin-top:20px;font-size:clamp(27px,2.7vw,38px);line-height:1.13;text-wrap:balance}
+.rail h2{margin-top:20px;font-size:clamp(28px,2.8vw,40px);line-height:1.12;text-wrap:balance}
+
+.sec--wide .rail{grid-column:1 / -1;position:static;padding-right:0;margin-bottom:clamp(36px,4.4vw,60px)}
+.sec--wide .rail h2{max-width:22ch;font-size:clamp(30px,3.5vw,50px)}
+.sec--wide .body{grid-column:1 / -1}
+
 @media(max-width:920px){
     .grid{display:block}
     .rail{position:static;padding-right:0;margin-bottom:clamp(26px,5vw,38px)}
@@ -321,39 +353,50 @@ a.fact:hover .fact-l{color:var(--on)}
 /* Четыре узнаваемые ситуации списком с номерами. Набраны антиквой и крупнее
    прозы: на них читатель решает, про него страница или нет. */
 .issues li{
-    display:grid;grid-template-columns:56px minmax(0,1fr);align-items:baseline;
-    padding:26px 0;border-top:1px solid var(--rule);
+    display:grid;grid-template-columns:64px minmax(0,1fr);align-items:baseline;
+    padding:28px 0;border-top:1px solid var(--rule);
     transition:padding-left .35s var(--ease);
 }
-.issues li:first-child{border-top-color:var(--dark);border-top-width:2px}
+.issues li:first-child{border-top-color:var(--ink);border-top-width:2px}
 .issues li:last-child{border-bottom:1px solid var(--rule)}
-.issues p{font-family:var(--serif);font-weight:500;font-size:clamp(20px,1.9vw,25px);line-height:1.34;color:var(--ink)}
+.issues .idx{font-size:19px}
+.issues p{font-family:var(--serif);font-weight:500;font-size:clamp(20px,1.95vw,26px);line-height:1.34;color:var(--ink)}
 @media(hover:hover){
     .issues li:hover{padding-left:10px}
 }
 
 /* ─── Процесс ────────────────────────────────────────────── */
-/* Таблицей: номер, шаг, что на нём решается. Оси и кружков нет -
-   последовательность держат номера и порядок строк. */
+/* Один геометрический приём на странице: линия с оливковыми узлами.
+   На широком экране четыре шага стоят в ряд на общей линии, на узком -
+   столбцом, номер слева. Шаги связаны порядком, а не стрелками. */
 .proc li{
-    display:grid;grid-template-columns:56px minmax(0,1fr) minmax(0,1.05fr);column-gap:var(--gap);
+    display:grid;grid-template-columns:64px minmax(0,1fr);column-gap:0;row-gap:6px;
     align-items:baseline;padding:22px 0;border-top:1px solid var(--rule);
 }
-.proc li:first-child{border-top-color:var(--dark);border-top-width:2px}
+.proc li:first-child{border-top-color:var(--ink);border-top-width:2px}
 .proc li:last-child{border-bottom:1px solid var(--rule)}
+.proc .idx{grid-row:1 / span 2}
+.proc h3,.proc p{grid-column:2}
 .proc p{font-size:15.5px;line-height:1.6}
-.note{margin-top:22px;font-size:13.5px;line-height:1.6;color:var(--ink3);max-width:640px}
-@media(max-width:640px){
-    /* Зазор между колонками снят: текст шага встаёт на ту же вертикаль,
-       что и текст ситуаций в блоке выше. */
-    .proc li{grid-template-columns:56px minmax(0,1fr);column-gap:0;row-gap:6px}
-    .proc p{grid-column:2}
+.note{margin-top:28px;font-size:14px;line-height:1.6;color:var(--ink3);max-width:640px}
+@media(min-width:900px){
+    .proc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--gap);border-top:1px solid var(--ink)}
+    .proc li{
+        position:relative;display:block;padding:34px 20px 0 0;border:0;
+    }
+    .proc li:first-child,.proc li:last-child{border:0}
+    .proc li::before{
+        content:'';position:absolute;left:0;top:-5px;width:9px;height:9px;background:var(--olive);
+    }
+    .proc .idx{display:block;margin-bottom:20px;font-size:34px;font-weight:500;line-height:1}
+    .proc h3{margin-bottom:10px;font-size:clamp(18px,1.5vw,20px)}
+    .proc p{font-size:15px}
+    .note{margin-top:clamp(36px,4vw,56px)}
 }
 
 /* ─── Советник, коуч, психолог ───────────────────────────── */
-/* Матрица: три признака на три роли. На действующей странице это девять
-   строк подряд, и сравнивать приходилось в уме. Колонка Советника залита
-   чёрным целиком - её видно раньше, чем прочитан хоть один заголовок. */
+/* Матрица: три признака на три роли. Колонка Советника залита оливковым
+   целиком - её видно раньше, чем прочитан хоть один заголовок. */
 .cmp{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}
 .cmp-c0{width:15%}
 .cmp-c1{width:35%}
@@ -362,8 +405,8 @@ a.fact:hover .fact-l{color:var(--on)}
 .cmp tbody th{padding-left:0;padding-top:26px}
 .cmp tbody th,.cmp tbody td{border-top:1px solid var(--rule)}
 .cmp td{font-size:15.5px;line-height:1.55}
-.cmp .cmp-me{background:var(--dark);color:var(--on);border-top-color:var(--on-rule)}
-.cmp thead .cmp-me{color:var(--on2)}
+.cmp .cmp-me{background:var(--olive-d);color:var(--paper);border-top-color:var(--on-rule)}
+.cmp thead .cmp-me{color:var(--sage)}
 .cmp td.cmp-me{font-size:16.5px;font-weight:600}
 .cmp tbody tr:last-child .cmp-me{padding-bottom:28px}
 @media(max-width:720px){
@@ -374,7 +417,7 @@ a.fact:hover .fact-l{color:var(--on)}
     .cmp thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
     .cmp colgroup{display:none}
     .cmp tr{padding:18px 0 14px;border-top:1px solid var(--rule)}
-    .cmp tbody tr:first-child{border-top:2px solid var(--dark)}
+    .cmp tbody tr:first-child{border-top:2px solid var(--ink)}
     .cmp tbody th{padding:0 0 10px;border:0}
     .cmp tbody td,.cmp td.cmp-me,.cmp tbody tr:last-child .cmp-me{
         display:grid;grid-template-columns:96px 1fr;column-gap:12px;align-items:baseline;
@@ -382,33 +425,39 @@ a.fact:hover .fact-l{color:var(--on)}
     }
     .cmp td.cmp-me{color:var(--ink)}
     .cmp td::before{content:attr(data-who);font-size:13px;font-weight:400;color:var(--ink3)}
-    .cmp td.cmp-me::before{color:var(--ink);font-weight:600}
+    .cmp td.cmp-me::before{color:var(--olive);font-weight:600}
 }
 
 /* ─── Кто такой Советник ─────────────────────────────────── */
-/* Определение роли - крупной антиквой. Ниже подпись, биография и цитата,
-   в том же порядке, что на действующей странице. Цитата стоит чёрной плашкой:
-   это единственная фраза страницы, сказанная от первого лица как правило. */
-.lead-serif{font-family:var(--serif);font-weight:500;font-size:clamp(21px,2.2vw,30px);line-height:1.34;color:var(--ink)}
-.who{margin-top:clamp(32px,3.8vw,48px);padding-top:26px;border-top:2px solid var(--dark)}
-.who-id{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;margin-bottom:22px}
-.who-id b{font-size:17px}
-.who-id span{font-size:14px;color:var(--ink3)}
-.who-bio{max-width:690px}
+/* Определение роли - крупной антиквой. Ниже подпись слева и биография справа,
+   потом цитата графитовой плитой. */
+.lead-serif{font-family:var(--serif);font-weight:500;font-size:clamp(22px,2.4vw,32px);line-height:1.32;color:var(--ink);text-wrap:pretty}
+.who{margin-top:clamp(36px,4.2vw,56px);padding-top:28px;border-top:2px solid var(--ink)}
+.who-id{display:flex;flex-direction:column;gap:6px;margin-bottom:24px}
+.who-id b{font-family:var(--serif);font-weight:600;font-size:20px}
+.who-id span{font-size:14px;line-height:1.5;color:var(--ink3)}
+.who-bio{max-width:660px}
 .who-bio p + p{margin-top:16px}
 /* Последний абзац биографии - её вывод, набран плотнее. */
-.who-bio p:last-child{font-weight:600;color:var(--ink)}
-.quote{margin-top:clamp(32px,3.8vw,48px);padding:clamp(26px,3vw,40px);background:var(--dark);color:var(--on3)}
-.quote p{font-family:var(--serif);font-weight:500;font-size:clamp(21px,2.2vw,29px);line-height:1.34;color:var(--on)}
-.quote cite{display:block;margin-top:14px;font-style:normal;font-size:14px}
+.who-bio p:last-child{font-family:var(--serif);font-weight:500;font-size:1.18em;line-height:1.4;color:var(--ink)}
+@media(min-width:900px){
+    .who{display:grid;grid-template-columns:200px minmax(0,1fr);column-gap:var(--gap)}
+    .who-id{margin-bottom:0}
+}
+.quote{
+    margin-top:clamp(36px,4.2vw,56px);padding:clamp(28px,3.4vw,48px);
+    background:var(--dark);color:var(--on3);border-left:3px solid var(--sage);
+}
+.quote p{font-family:var(--serif);font-weight:500;font-size:clamp(22px,2.3vw,31px);line-height:1.32;color:var(--on)}
+.quote cite{display:block;margin-top:16px;font-style:normal;font-size:14px;color:var(--on3)}
 
 /* ─── Практика ───────────────────────────────────────────── */
-/* Кейс свёрстан как в отчёте: рубрика слева, текст справа, четыре строки.
-   Рубрики "Ситуация - Оценка - Стратегия - Результат" повторяют шаги
-   разбора: кейс показывает метод в работе. Результат подложен тоном -
-   отдельных плиток с цифрами нет, чтобы не повторять его дважды. */
-.case{border-top:2px solid var(--dark);padding-top:26px}
+/* Кейс свёрстан как в отчёте: четыре строки, рубрики повторяют шаги разбора -
+   кейс показывает метод в работе. На широком экране кейсы стоят рядом.
+   Результат подложен тоном и оливковой чертой. */
+.case{border-top:2px solid var(--ink);padding-top:26px}
 .case + .case{margin-top:clamp(44px,5vw,64px)}
+.case-top .idx{font-size:13px}
 .case-top h3{margin-top:12px;font-family:var(--serif);font-weight:500;font-size:clamp(22px,2.2vw,29px);line-height:1.2}
 .case-dl{margin-top:24px}
 .case-dl > div{
@@ -417,87 +466,106 @@ a.fact:hover .fact-l{color:var(--on)}
 }
 .case-dl dt{padding-top:5px}
 .case-dl dd{font-size:15.5px;line-height:1.62}
-.case-dl .case-out{margin-inline:-20px;padding-inline:20px;background:var(--bg2);border-top-color:transparent}
-.sec--alt .case-dl .case-out{background:var(--bg)}
-.case-out dt{color:var(--ink)}
+.case-dl .case-out{
+    padding-inline:16px;background:var(--sand);
+    border-top-color:transparent;border-left:3px solid var(--olive);
+}
+.sec--alt .case-dl .case-out{background:var(--paper)}
+.case-out dt{color:var(--olive)}
 .case-out dd{font-weight:600;color:var(--ink)}
+@media(min-width:1180px){
+    .sec--wide .body > .case{display:block}
+    #cases .body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(40px,5vw,72px);align-items:start}
+    .case + .case{margin-top:0}
+    .case-dl > div{grid-template-columns:112px minmax(0,1fr);column-gap:18px}
+}
 @media(max-width:640px){
     .case-dl > div{grid-template-columns:1fr;row-gap:5px}
     .case-dl dt{padding-top:0}
-    .case-dl .case-out{margin-inline:-14px;padding-inline:14px}
+    .case-dl .case-out{padding-inline:13px}
 }
 
 /* ─── Условия ────────────────────────────────────────────── */
-/* Две карточки. Основной формат чёрный - на белом он читается первым.
+/* Две плиты. Основной формат графитовый - на светлом он читается первым.
    Срочный светлый, с кнопкой-контуром. */
-.prices{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+.prices{display:grid;grid-template-columns:1.2fr 1fr;gap:var(--gap)}
 .price{
-    display:flex;flex-direction:column;padding:clamp(24px,2.6vw,34px);
-    background:var(--bg);border:1px solid var(--rule2);
+    display:flex;flex-direction:column;padding:clamp(26px,2.8vw,38px);
+    background:var(--paper);border:1px solid var(--rule2);
 }
-.price h3{font-family:var(--serif);font-weight:500;font-size:clamp(21px,2vw,26px);line-height:1.2}
-.price-meta{margin-top:12px}
-.price-t{margin-top:16px;font-size:15.5px}
+.price h3{font-family:var(--serif);font-weight:500;font-size:clamp(22px,2.1vw,28px);line-height:1.2}
+.price-meta{margin-top:12px;color:var(--olive)}
+.price-t{margin-top:16px;font-size:15.5px;max-width:46ch}
 .price-foot{
-    margin-top:auto;padding-top:36px;
+    margin-top:auto;padding-top:40px;
     display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 20px;
 }
 .price-n{
     font-family:var(--serif);font-weight:500;font-variant-numeric:lining-nums;
-    font-size:clamp(36px,3.8vw,52px);line-height:1;color:var(--ink);white-space:nowrap;
+    font-size:clamp(38px,4vw,56px);line-height:1;color:var(--ink);white-space:nowrap;
 }
 .price-n i{font-family:var(--sans);font-style:normal;font-weight:500;font-size:.44em;margin-left:8px;color:var(--ink3)}
 .price--main{background:var(--dark);border-color:var(--dark);color:var(--on2)}
 .price--main h3,.price--main .price-n{color:var(--on)}
-.price--main .price-meta{color:var(--on2)}
+.price--main .price-meta{color:var(--sage)}
 .price--main .price-n i{color:var(--on3)}
-@media(max-width:720px){
+@media(max-width:820px){
     .prices{grid-template-columns:1fr}
 }
 
 /* ─── Вопросы ────────────────────────────────────────────── */
 .qa{border-bottom:1px solid var(--rule)}
-.qa:first-child{border-top:2px solid var(--dark)}
+.qa:first-child{border-top:2px solid var(--ink)}
 .qa summary{
-    display:flex;align-items:center;gap:20px;padding:21px 0;cursor:pointer;list-style:none;
+    display:flex;align-items:center;gap:20px;padding:22px 0;cursor:pointer;list-style:none;
     font-size:clamp(16px,1.3vw,17.5px);font-weight:600;line-height:1.4;color:var(--ink);
     transition:color .25s;
 }
 .qa summary::-webkit-details-marker{display:none}
-.qa summary:hover{color:var(--ink3)}
+.qa summary:hover{color:var(--olive)}
 /* Плюс из двух линий; в открытом ответе поворачивается в крестик. */
 .qa summary::after{
     content:'';flex:0 0 14px;height:14px;margin-left:auto;
     background:
-        linear-gradient(var(--ink),var(--ink)) 50% 50%/14px 1.5px no-repeat,
-        linear-gradient(var(--ink),var(--ink)) 50% 50%/1.5px 14px no-repeat;
+        linear-gradient(var(--olive),var(--olive)) 50% 50%/14px 1.5px no-repeat,
+        linear-gradient(var(--olive),var(--olive)) 50% 50%/1.5px 14px no-repeat;
     transition:transform .3s var(--ease);
 }
 .qa[open] summary::after{transform:rotate(45deg)}
-.qa-a{padding:0 0 24px;max-width:680px;font-size:15.5px}
-/* Плашка на ответах, написанных заново при переносе страницы: ответы
-   на действующей были свёрнуты и на скриншоты не попали. Снять вместе
+.qa-a{padding:0 0 26px;max-width:680px;font-size:15.5px}
+/* Ответ раскрывается плавно там, где браузер это умеет; в остальных просто
+   появляется. */
+@supports (interpolate-size:allow-keywords){
+    .qa{interpolate-size:allow-keywords}
+    .qa::details-content{
+        block-size:0;overflow:clip;
+        transition:block-size .35s var(--ease),content-visibility .35s allow-discrete;
+    }
+    .qa[open]::details-content{block-size:auto}
+}
+/* Плашка на ответах, написанных заново при переносе страницы. Снять вместе
    с заменой текста. */
-.draft{display:inline-block;margin-bottom:10px;padding:3px 9px;border:1px dashed var(--rule2);letter-spacing:.1em}
+.draft{display:inline-block;margin-bottom:10px;padding:3px 9px;border:1px dashed var(--olive);color:var(--olive);letter-spacing:.1em}
 
 /* ─── Контакт и подвал ───────────────────────────────────── */
-/* Страница заканчивается тем же чёрным, с которого началась. Контакты -
+/* Страница заканчивается графитом, как и портрет по тону. Контакты -
    строками со стрелкой: подпись, значение антиквой, вся строка ссылка. */
 .cta{background:var(--dark);color:var(--on2);padding-top:var(--sec)}
-.cta .rubric{color:var(--on2)}
-.cta h2{color:var(--on)}
+.cta h2{color:var(--on);font-size:clamp(28px,3.1vw,46px)}
 .cta-lead{font-size:clamp(17px,1.4vw,19px);line-height:1.6;max-width:560px}
 .cta .btn{margin-top:30px}
 .contacts{margin-top:clamp(36px,4.4vw,56px)}
 .contacts a{
     display:grid;grid-template-columns:132px minmax(0,1fr) auto;column-gap:var(--gap);align-items:baseline;
     padding:20px 0;border-top:1px solid var(--on-rule);color:var(--on);
+    transition:color .25s;
 }
 .contacts li:last-child a{border-bottom:1px solid var(--on-rule)}
+.contacts a:hover{color:var(--sage)}
 .contacts-k{color:var(--on3)}
 .contacts-v{font-family:var(--serif);font-weight:500;font-variant-numeric:lining-nums;font-size:clamp(21px,2.2vw,29px);line-height:1.2}
 .contacts svg{width:18px;height:18px;align-self:center;color:var(--on3);transition:transform .3s var(--ease),color .3s}
-.contacts a:hover svg{transform:translateX(5px);color:var(--on)}
+.contacts a:hover svg{transform:translateX(5px);color:var(--sage)}
 .ftr{
     margin-top:clamp(56px,7vw,96px);padding-block:26px;
     border-top:1px solid var(--on-rule);font-size:13px;color:var(--on3);
@@ -508,9 +576,10 @@ a.fact:hover .fact-l{color:var(--on)}
 }
 
 /* ─── Появление ──────────────────────────────────────────── */
-/* Блоки скрыты только когда скрипт на месте: класс .js на html ставит ak.js.
-   Без скрипта страница просто видна целиком. */
-.js .rv{opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+/* Блок ждёт своего появления чуть смещённым и бледнее, но остаётся читаемым:
+   страница целиком видна и без прокрутки (превью, поисковик, медленный
+   скрипт). Класс .js на html ставит ak.js; без скрипта блоки просто стоят. */
+.js .rv{opacity:.55;transform:translateY(14px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
 .js .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){
     *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}
@@ -519,7 +588,8 @@ a.fact:hover .fact-l{color:var(--on)}
 
 /* ─── Печать ─────────────────────────────────────────────── */
 @media print{
-    .hdr,.mnav{display:none}
+    .hdr,.mnav,.skip{display:none}
     .rail{position:static}
     .js .rv{opacity:1;transform:none}
+    .hero{min-height:0}
 }

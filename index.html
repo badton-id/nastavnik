@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Андрей Кучугурин - Советник | Оцениваю ситуацию и помогаю выбрать стратегию</title>
 <meta name="description" content="Советник: оцениваю ситуацию и помогаю выбрать стратегию, которая приведёт к результату. Управление, бизнес, поведение людей, конфликты. Разбор ситуации за 60–90 минут.">
 <meta name="author" content="Андрей Кучугурин">
@@ -10,16 +10,19 @@
 <meta property="og:title" content="Андрей Кучугурин - Советник | Оцениваю ситуацию и помогаю выбрать стратегию">
 <meta property="og:description" content="Оцениваю ситуацию и помогаю выбрать стратегию, которая приведёт к результату. Управление, бизнес, поведение людей, конфликты.">
 <meta property="og:locale" content="ru_RU">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#F6F2E9">
+<meta name="color-scheme" content="light">
 <!-- Адреса сайта пока нет: canonical, og:url и og:image добавить, когда появится домен. -->
-<!-- Шрифты, стили и скрипт у страницы свои. Файлы шаблона (landing.css, page.js,
-     intro.js, fonts.css) здесь не подключаются. -->
+<!-- Шрифты, стили и скрипт у страницы свои. Кириллическое начертание каждой
+     гарнитуры грузится заранее: от него зависит первый экран. -->
+<link rel="preload" href="assets/fonts/spectral-cyrillic-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/golos-text-cyrillic-400-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/ak-fonts.css">
 <link rel="stylesheet" href="ak.css">
 <script src="ak.js" defer></script>
 </head>
 <body>
-
+<a class="skip" href="#top">К содержимому</a>
 <!-- ══════════ ШАПКА ══════════ -->
 <header class="hdr" id="hdr">
   <div class="hdr-in">
@@ -51,7 +54,7 @@
 
 <main id="top">
 <!-- ══════════ ПЕРВЫЙ ЭКРАН ══════════ -->
-<section class="hero on-dark">
+<section class="hero">
   <figure class="hero-shot">
     <!-- Портрет на прозрачном фоне: не уменьшен, пережат только без потерь.
          На телефоне тот же файл, квадрат вокруг фигуры вырезает CSS.
@@ -100,11 +103,11 @@
      с действующей страницы. -->
 
 <!-- ══════════ СИТУАЦИИ ══════════ -->
-<section class="sec" id="familiar">
+<section class="sec" id="familiar" aria-labelledby="h-familiar">
   <div class="wrap grid">
     <header class="rail rv">
       <p class="rubric">Ситуации</p>
-      <h2>Возможно, вам знакомо</h2>
+      <h2 id="h-familiar">Возможно, вам знакомо</h2>
     </header>
     <div class="body">
       <ol class="issues">
@@ -118,11 +121,11 @@
 </section>
 
 <!-- ══════════ ПРОЦЕСС ══════════ -->
-<section class="sec sec--alt" id="how">
+<section class="sec sec--alt sec--wide" id="how" aria-labelledby="h-how">
   <div class="wrap grid">
     <header class="rail rv">
       <p class="rubric">Процесс</p>
-      <h2>Как проходит разбор</h2>
+      <h2 id="h-how">Как проходит разбор</h2>
     </header>
     <div class="body">
       <ol class="proc">
@@ -144,7 +147,7 @@
         <li class="rv">
           <span class="idx" aria-hidden="true">04</span>
           <h3>Собираем тактику</h3>
-          <p>Конкретные шаги&nbsp;— с&nbsp;учётом времени и&nbsp;доступных средств, что у&nbsp;вас есть</p>
+          <p>Конкретные шаги&nbsp;— с&nbsp;учётом времени и&nbsp;доступных вам средств</p>
         </li>
       </ol>
       <p class="note rv">Формат живой: решение разрабатываем на&nbsp;основе информации, предоставленной на&nbsp;звонке. По&nbsp;желанию&nbsp;— короткое резюме текстом после, но&nbsp;это не&nbsp;обязательная часть.</p>
@@ -153,11 +156,11 @@
 </section>
 
 <!-- ══════════ ОТЛИЧИЕ ══════════ -->
-<section class="sec" id="diff">
+<section class="sec" id="diff" aria-labelledby="h-diff">
   <div class="wrap grid">
     <header class="rail rv">
       <p class="rubric">Отличие</p>
-      <h2>Чем Советник отличается от&nbsp;коуча и&nbsp;психолога</h2>
+      <h2 id="h-diff">Чем Советник отличается от&nbsp;коуча и&nbsp;психолога</h2>
     </header>
     <div class="body">
       <!-- data-who дублирует заголовок колонки: на телефоне таблица складывается
@@ -193,11 +196,11 @@
 </section>
 
 <!-- ══════════ КТО ТАКОЙ СОВЕТНИК ══════════ -->
-<section class="sec sec--alt" id="about">
+<section class="sec sec--alt" id="about" aria-labelledby="h-about">
   <div class="wrap grid">
     <header class="rail rv">
       <p class="rubric">О&nbsp;Советнике</p>
-      <h2>Кто такой Советник</h2>
+      <h2 id="h-about">Кто такой Советник</h2>
     </header>
     <div class="body">
       <p class="lead-serif rv">В&nbsp;XIX&nbsp;веке у&nbsp;людей, принимающих большие решения, был человек, к&nbsp;которому обращались за&nbsp;взглядом со&nbsp;стороны&nbsp;— тот, кто умел видеть суть происходящего и&nbsp;понимать людей.</p>
@@ -220,11 +223,11 @@
 </section>
 
 <!-- ══════════ ПРАКТИКА ══════════ -->
-<section class="sec" id="cases">
+<section class="sec sec--wide" id="cases" aria-labelledby="h-cases">
   <div class="wrap grid">
     <header class="rail rv">
       <p class="rubric">Практика</p>
-      <h2>Кейсы</h2>
+      <h2 id="h-cases">Кейсы</h2>
     </header>
     <div class="body">
       <!-- Заголовки кейсов добавлены при переносе: на действующей странице
@@ -283,11 +286,11 @@
 </section>
 
 <!-- ══════════ УСЛОВИЯ ══════════ -->
-<section class="sec sec--alt" id="price">
+<section class="sec sec--alt sec--wide" id="price" aria-labelledby="h-price">
   <div class="wrap grid">
     <header class="rail rv">
       <p class="rubric">Условия</p>
-      <h2>Стоимость</h2>
+      <h2 id="h-price">Стоимость</h2>
     </header>
     <div class="body">
       <div class="prices">
@@ -314,11 +317,11 @@
 </section>
 
 <!-- ══════════ ВОПРОСЫ ══════════ -->
-<section class="sec" id="faq">
+<section class="sec" id="faq" aria-labelledby="h-faq">
   <div class="wrap grid">
     <header class="rail rv">
       <p class="rubric">FAQ</p>
-      <h2>Вопросы</h2>
+      <h2 id="h-faq">Вопросы</h2>
     </header>
     <div class="body">
       <!-- ЧЕРНОВИКИ. На скриншотах действующей страницы ответы свёрнуты, их текста
@@ -369,12 +372,12 @@
 </main>
 
 <!-- ══════════ КОНТАКТ И ПОДВАЛ ══════════ -->
-<section class="cta on-dark" id="contact">
+<section class="cta on-dark" id="contact" aria-labelledby="h-contact">
   <div class="wrap">
     <div class="grid">
       <header class="rail rv">
         <p class="rubric">Контакт</p>
-        <h2>Не&nbsp;обязательно решать всё самостоятельно</h2>
+        <h2 id="h-contact">Не&nbsp;обязательно решать всё самостоятельно</h2>
       </header>
       <div class="body">
         <p class="cta-lead rv">Если есть ситуация, в&nbsp;которой вы застряли&nbsp;— давайте разберём её вместе.</p>
@@ -392,6 +395,5 @@
     <footer class="ftr">© <span id="yr">2026</span> Андрей Кучугурин · Советник</footer>
   </div>
 </section>
-
 </body>
 </html>
