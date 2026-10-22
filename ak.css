@@ -208,14 +208,19 @@ b,strong{font-weight:600;color:var(--ink)}
 
 /* Портрет - andrey-portrait.png, фигура на прозрачном фоне (кадр 1448x1086).
    Файл стоит как есть: без масок, без правки цвета, без сжатия с потерями.
-   Под фигурой песочная плита: она ограничивает фон и даёт опору, голова
-   выходит над её верхним краем. Плита рисуется на самой .hero-shot,
-   поэтому едет вместе с портретом и не зависит от ширины окна. */
+   Под фигурой песочная плита. Правила кадра, которые она соблюдает:
+   - голова целиком внутри плиты, запас над макушкой около 14% высоты
+     кадра: ни один край плиты не проходит через лицо или шею;
+   - по бокам равные поля (плечи занимают от 14% до 85% ширины кадра,
+     плита по ширине равна кадру): плечи не касаются краёв плиты;
+   - нижний край плиты и нижний край секции совпадают с нижним краем
+     кадра, поэтому фигура "стоит" на нём, а руки не обрезаны.
+   Плита рисуется на самой .hero-shot, едет вместе с портретом и не
+   зависит от ширины окна. */
 .hero-shot{margin:0;pointer-events:none;position:relative}
 .hero-shot img{display:block;width:100%;height:auto;position:relative;z-index:1}
 .hero-shot::before{
-    content:'';position:absolute;z-index:0;bottom:0;left:50%;
-    width:72%;height:74%;transform:translateX(-50%);
+    content:'';position:absolute;z-index:0;left:0;right:0;bottom:0;top:-14%;
     background:var(--sand);
 }
 
@@ -284,18 +289,18 @@ a.fact:hover .fact-l{color:var(--ink)}
     .facts{max-width:600px}
 
     /* Фигура стоит на нижнем крае секции: руки на столе срезаны этим краем.
-       Занимает около половины высоты окна; ширина ограничена и окном,
-       и его высотой, высота идёт за шириной, пропорции кадра не меняются.
-       Центр по горизонтали считается от середины окна, как и колонка сайта,
-       поэтому на широком мониторе фигура не уезжает к краю. */
+       Занимает около половины высоты окна; ширина ограничена окном, его
+       высотой и колонкой текста, высота идёт за шириной, пропорции кадра
+       не меняются. */
     .hero-shot{
-        --w:min(clamp(430px,46vw,740px),calc(52vh * 1.333));
-        --w:min(clamp(430px,46vw,740px),calc(52svh * 1.333));
-        position:absolute;z-index:0;bottom:0;width:var(--w);
-        /* Правый край плиты (она занимает 72% кадра, фигура стоит по его центру)
-           ложится на правый край колонки сайта; на узком окне - на поле. */
-        left:calc(min(100vw - var(--pad), 50vw + var(--max) / 2 - var(--pad)) - var(--w) * .36);
-        transform:translateX(-50%);
+        /* Где кончается колонка текста: левое поле сайта плюс её ширина.
+           Плита (она равна кадру) не заходит левее этой черты и ещё 24px
+           воздуха: её край не режет строки заголовка. */
+        --textR:calc(max(0px, 50vw - var(--max) / 2) + var(--pad) + clamp(440px,47vw,690px));
+        --w:min(clamp(430px,46vw,740px),calc(52vh * 1.333),calc(100vw - var(--textR) - 24px));
+        --w:min(clamp(430px,46vw,740px),calc(52svh * 1.333),calc(100vw - var(--textR) - 24px));
+        /* Плита прижата к правому краю экрана и к нижнему краю секции. */
+        position:absolute;z-index:0;bottom:0;right:0;width:var(--w);
         animation:none;
     }
     .hero-shot img{animation:show 1.1s var(--ease) .15s both}
@@ -304,14 +309,16 @@ a.fact:hover .fact-l{color:var(--ink)}
     /* На телефоне портрет стоит первым, текст под ним. Снимок квадратный
        и стоит по центру: не шире 68% экрана и не выше 36% окна. Квадрат
        вырезает object-fit: по высоте кадр входит целиком, по бокам
-       срезается пустое поле. Плита уходит на всю ширину экрана. */
+       срезается пустое поле. Плита уходит на всю ширину экрана и начинается
+       сразу под шапкой; фигура опущена ниже её верхнего края на запас
+       над макушкой. */
     .hero{min-height:0;padding-bottom:44px}
-    .hero-shot{z-index:0;padding-top:calc(var(--hdr) - 6px)}
+    .hero-shot{z-index:0;padding-top:calc(var(--hdr) + 26px)}
     .hero-shot img{
         width:min(68%,36vh);width:min(68%,36svh);height:auto;aspect-ratio:1/1;margin-inline:auto;
         object-fit:cover;object-position:50% 50%;
     }
-    .hero-shot::before{width:100vw;height:68%}
+    .hero-shot::before{top:var(--hdr);left:50%;right:auto;width:100vw;transform:translateX(-50%)}
     .hero > .wrap{padding-top:22px}
 }
 @media(max-width:560px){
