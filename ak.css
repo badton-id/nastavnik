@@ -459,7 +459,7 @@ a.fact:hover .fact-l{color:var(--ink)}
 .quote cite{display:block;margin-top:16px;font-style:normal;font-size:14px;color:var(--on3)}
 
 /* ─── Практика ───────────────────────────────────────────── */
-/* Кейс свёрстан как в отчёте: четыре строки, рубрики повторяют шаги разбора -
+/* Кейс свёрстан как в отчёте: пять строк (ситуация, суть, стратегия, тактика, результат) -
    кейс показывает метод в работе. На широком экране кейсы стоят рядом.
    Результат подложен тоном и оливковой чертой. */
 .case{border-top:2px solid var(--ink);padding-top:26px}
@@ -482,7 +482,7 @@ a.fact:hover .fact-l{color:var(--ink)}
 .case-out dd{font-weight:600;color:var(--ink)}
 @media(min-width:1180px){
     .sec--wide .body > .case{display:block}
-    #cases .body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(40px,5vw,72px);align-items:start}
+    #cases .body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(40px,5vw,72px);row-gap:clamp(44px,5vw,64px);align-items:start}
     .case + .case{margin-top:0}
     .case-dl > div{grid-template-columns:112px minmax(0,1fr);column-gap:18px}
 }
