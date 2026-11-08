@@ -460,9 +460,10 @@ a.fact:hover .fact-l{color:var(--ink)}
 
 /* ─── Практика ───────────────────────────────────────────── */
 /* Кейс свёрстан как в отчёте: пять строк (ситуация, суть, стратегия, тактика, результат) -
-   кейс показывает метод в работе. На широком экране кейсы стоят рядом.
+   кейс показывает метод в работе. Кейсы идут друг под другом; ширина ограничена,
+   чтобы строки на широком экране не растягивались.
    Результат подложен тоном и оливковой чертой. */
-.case{border-top:2px solid var(--ink);padding-top:26px}
+.case{border-top:2px solid var(--ink);padding-top:26px;max-width:780px}
 .case + .case{margin-top:clamp(44px,5vw,64px)}
 .case-top .idx{font-size:13px}
 .case-top h3{margin-top:12px;font-family:var(--serif);font-weight:500;font-size:clamp(22px,2.2vw,29px);line-height:1.2}
@@ -480,12 +481,6 @@ a.fact:hover .fact-l{color:var(--ink)}
 .sec--alt .case-dl .case-out{background:var(--paper)}
 .case-out dt{color:var(--olive)}
 .case-out dd{font-weight:600;color:var(--ink)}
-@media(min-width:1180px){
-    .sec--wide .body > .case{display:block}
-    #cases .body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(40px,5vw,72px);row-gap:clamp(44px,5vw,64px);align-items:start}
-    .case + .case{margin-top:0}
-    .case-dl > div{grid-template-columns:112px minmax(0,1fr);column-gap:18px}
-}
 @media(max-width:640px){
     .case-dl > div{grid-template-columns:1fr;row-gap:5px}
     .case-dl dt{padding-top:0}
