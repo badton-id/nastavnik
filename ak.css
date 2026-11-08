@@ -98,7 +98,7 @@ b,strong{font-weight:600;color:var(--ink)}
 
 /* Рубрика: мелкая капитель с короткой оливковой чертой. Стоит над заголовком
    секции и подписывает строки таблиц и кейсов. */
-.rubric,.cmp thead th,.cmp tbody th,.case-dl dt,.price-meta,.contacts-k,.draft{
+.rubric,.cmp thead th,.cmp tbody th,.case-dl dt,.price-meta,.contacts-k{
     font-family:var(--sans);font-size:11.5px;font-weight:600;line-height:1.4;
     letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);
 }
@@ -563,6 +563,8 @@ a.fact:hover .fact-l{color:var(--ink)}
 }
 .qa[open] summary::after{transform:rotate(45deg)}
 .qa-a{padding:0 0 26px;max-width:680px;font-size:15.5px}
+.qa-a a{text-decoration:underline;text-decoration-color:var(--olive);text-underline-offset:3px;transition:color .25s}
+.qa-a a:hover{color:var(--olive)}
 /* Ответ раскрывается плавно там, где браузер это умеет; в остальных просто
    появляется. */
 @supports (interpolate-size:allow-keywords){
@@ -573,9 +575,6 @@ a.fact:hover .fact-l{color:var(--ink)}
     }
     .qa[open]::details-content{block-size:auto}
 }
-/* Плашка на ответах, написанных заново при переносе страницы. Снять вместе
-   с заменой текста. */
-.draft{display:inline-block;margin-bottom:10px;padding:3px 9px;border:1px dashed var(--olive);color:var(--olive);letter-spacing:.1em}
 
 /* ─── Контакт и подвал ───────────────────────────────────── */
 /* Страница заканчивается графитом, как и портрет по тону. Контакты -
