@@ -459,7 +459,8 @@ a.fact:hover .fact-l{color:var(--ink)}
 .quote cite{display:block;margin-top:16px;font-style:normal;font-size:14px;color:var(--on3)}
 
 /* ─── Практика ───────────────────────────────────────────── */
-/* Кейс свёрстан как в отчёте: пять строк (ситуация, суть, стратегия, тактика, результат) -
+/* Кейс свёрстан как в отчёте: пять строк (ситуация, суть, стратегия, тактика, результат),
+   средние три свёрнуты в «Как решали» -
    кейс показывает метод в работе. Кейсы идут друг под другом; ширина ограничена,
    чтобы строки на широком экране не растягивались.
    Результат подложен тоном и оливковой чертой. */
@@ -479,6 +480,33 @@ a.fact:hover .fact-l{color:var(--ink)}
     border-top-color:transparent;border-left:3px solid var(--olive);
 }
 .sec--alt .case-dl .case-out{background:var(--paper)}
+/* Ход решения свёрнут: сразу видны ситуация и результат, а суть, стратегия
+   и тактика открываются по «Как решали». Плюс тот же, что в вопросах. */
+.case-how .case-dl,.case-dl--out{margin-top:0}
+.case-how summary{
+    display:flex;align-items:center;gap:12px;padding:15px 0;border-top:1px solid var(--rule);
+    cursor:pointer;list-style:none;
+    font-family:var(--sans);font-size:11.5px;font-weight:600;line-height:1.4;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--olive);transition:color .25s;
+}
+.case-how summary::-webkit-details-marker{display:none}
+.case-how summary:hover{color:var(--olive-d)}
+.case-how summary::before{
+    content:'';flex:0 0 12px;height:12px;
+    background:
+        linear-gradient(currentColor,currentColor) 50% 50%/12px 1.5px no-repeat,
+        linear-gradient(currentColor,currentColor) 50% 50%/1.5px 12px no-repeat;
+    transition:transform .3s var(--ease);
+}
+.case-how[open] summary::before{transform:rotate(45deg)}
+@supports (interpolate-size:allow-keywords){
+    .case-how{interpolate-size:allow-keywords}
+    .case-how::details-content{
+        block-size:0;overflow:clip;
+        transition:block-size .35s var(--ease),content-visibility .35s allow-discrete;
+    }
+    .case-how[open]::details-content{block-size:auto}
+}
 .case-out dt{color:var(--olive)}
 .case-out dd{font-weight:600;color:var(--ink)}
 @media(max-width:640px){
