@@ -518,7 +518,7 @@ a.fact:hover .fact-l{color:var(--ink)}
 /* ─── Условия ────────────────────────────────────────────── */
 /* Две плиты. Основной формат графитовый - на светлом он читается первым.
    Срочный светлый, с кнопкой-контуром. */
-.prices{display:grid;grid-template-columns:1.2fr 1fr;gap:var(--gap)}
+.prices{display:grid;grid-template-columns:1.5fr 1fr;gap:var(--gap)}
 .price{
     display:flex;flex-direction:column;padding:clamp(26px,2.8vw,38px);
     background:var(--paper);border:1px solid var(--rule2);
