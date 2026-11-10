@@ -16,4 +16,4 @@
 
 ## До запуска
 
-- [ ] Когда появится домен: `canonical`, `og:url`, `og:image`, favicon.
+- [x] Домен prosovetnik.online: `canonical`, `og:url`, `og:image` (og-image.jpg, 1200×630), favicon, robots.txt, sitemap.xml.
