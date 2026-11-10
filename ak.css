@@ -400,6 +400,15 @@ a.fact:hover .fact-l{color:var(--ink)}
     .proc p{font-size:15px}
     .note{margin-top:clamp(36px,4vw,56px)}
 }
+/* Шаг чуть увеличивается под курсором, номер темнеет до графита.
+   Только для устройств с мышью; scale не спорит с transform появления .rv. */
+@media(hover:hover){
+    .proc li,.js .proc li.rv{transition:opacity .6s var(--ease),transform .6s var(--ease),scale .35s var(--ease)}
+    .proc li{transform-origin:0 50%}
+    .proc li:hover{scale:1.04}
+    .proc .idx{transition:color .3s}
+    .proc li:hover .idx{color:var(--ink)}
+}
 
 /* ─── Советник, коуч, психолог ───────────────────────────── */
 /* Матрица: три признака на три роли. Колонка Советника залита оливковым
