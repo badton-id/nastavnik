@@ -70,8 +70,9 @@
     a.addEventListener('click', function (e) {
       var id = a.getAttribute('href').slice(1);
       var t = id && document.getElementById(id);
-      if (!t) return;
+      if (!t || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       e.preventDefault();
+      if (window.location.hash !== a.hash) window.history.pushState(null, '', a.hash);
       var top = id === 'top' ? 0 : t.getBoundingClientRect().top + window.scrollY - hdr.offsetHeight;
       window.scrollTo({ top: top, behavior: reduce ? 'auto' : 'smooth' });
       /* Фокус переходит к разделу, чтобы клавиатура и экранный чтец
