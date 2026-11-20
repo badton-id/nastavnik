@@ -130,12 +130,11 @@ b,strong{font-weight:600;color:var(--ink)}
 .on-dark{--btn-bg:var(--paper);--btn-fg:var(--dark);--btn-hover:var(--sage)}
 
 /* ─── Шапка ──────────────────────────────────────────────── */
-/* Над первым экраном прозрачная, ниже по странице - сплошная полоса
-   цвета бумаги с тонкой линией. Открытое меню на телефоне - тоже сплошная. */
+/* Сплошной фон сохраняет контраст меню над фотографией. */
 .hdr{
     position:fixed;inset:0 0 auto 0;z-index:50;
     height:calc(var(--hdr) + env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px);
-    display:flex;align-items:center;color:var(--ink);
+    display:flex;align-items:center;color:var(--ink);background:var(--paper);
     border-bottom:1px solid transparent;
     transition:background .3s var(--ease),border-color .3s;
 }
